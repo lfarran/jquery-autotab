@@ -118,7 +118,7 @@
     }
     $(':input').autotab(options);
   };
-  $.autotab.selectFilterByClass = false;
+  $.autotab.selectFilterByClass = true;
   $.autotab.next = function () {
     var e = $(document.activeElement);
     if (e.length) {
