@@ -408,7 +408,11 @@
     // custom function or exterior method calls for a manual auto tab
     $(element).on('autotab-next', function (event, defaults) {
       var self = this;
+      var value = parseInt($(event.target).val());
       if ($(event.target).attr('data-last') == '4') {
+        return false;
+      }
+      if (value >= 256 || value < 0) {
         return false;
       }
       setTimeout(function () {
@@ -439,6 +443,10 @@
         }
       }, 1);
     }).on('autotab-previous', function (event, defaults) {
+      var value = parseInt($(event.target).val());
+      if (value >= 256 || value < 0) {
+        return false;
+      }
       var self = this;
       setTimeout(function () {
         if (!defaults) {
@@ -495,15 +503,14 @@
           keyCode = e.which || e.charCode;
         if ($(e.target).attr('data-last') == '4' && keyCode == 39) {
           return false;
-        }else if($(e.target).attr('data-last') == '1' && keyCode == 37){
-          return false;
-        }
-
+        } else
+          if ($(e.target).attr('data-last') == '1' && keyCode == 37) {
+            return false;
+          }
         var defaults = getSettings(this);
         if (!defaults || defaults.disabled) {
           return true;
         }
-
         // Go to the previous element when backspace
         // is pressed in an empty input field
         if (keyCode == 8) {
@@ -561,12 +568,12 @@
       }).on('keypress.autotab', function (e) {
         var defaults = getSettings(this),
           keyCode = e.which || e.keyCode;
-        if ($(e.target).attr('data-last') == '4' && keyCode ==39) {
+        if ($(e.target).attr('data-last') == '4' && keyCode == 39) {
           return false;
-        }else if($(e.target).attr('data-last') == '1' && keyCode == 37){
-          return false;
-        }
-
+        } else
+          if ($(e.target).attr('data-last') == '1' && keyCode == 37) {
+            return false;
+          }
         // e.charCode == 0 indicates a special key has been pressed, which only
         // Firefox triggers
         if (!defaults || defaults.disabled || (settings.firefox && e.charCode
