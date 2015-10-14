@@ -520,9 +520,10 @@
             $(this).trigger('autotab-previous', defaults);
             return false;
           }
-          setSettings(this, {changed: (this.value !== defaults.originalValue)});
+          //setSettings(this, {changed: (this.value !==
+          // defaults.originalValue)});
           if (this.value.length === 0) {
-            $(this).trigger('autotab-previous', defaults);
+            //$(this).trigger('autotab-previous', defaults);
             return;
           }
         }
